@@ -1,5 +1,4 @@
 language: "perl"
 before_install:
     - git submodule update --init --recursive
-    - cpanm Module::Install
-    - 'echo | cpanm Module::Install::XSUtil'
+    - perl Makefile.PL | cpanm

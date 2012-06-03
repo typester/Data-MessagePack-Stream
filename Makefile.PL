@@ -3,13 +3,14 @@ use warnings;
 
 BEGIN {
     my @devmods = qw(
-        inc::Module::Install
         Module::Install::AuthorTests
         Module::Install::ReadmeFromPod
         Module::Install::Repository
         Module::Install::XSUtil
     );
     my @not_available;
+
+    eval qq{use inc::Module::Install; 1;} or push @not_available, 'inc::Module::Install';
     for my $mod (@devmods) {
         eval qq{require $mod} or push @not_available, $mod;
     }

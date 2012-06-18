@@ -1,5 +1,8 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+0.04 2012-06-18T10:34:33+09:00
+     - enable -fPIC on x86_64 environment
+
 0.03 2012-06-08T20:06:35+09:00
      - bundle msgpack 0.5.7 release tar data instead of git submodule
 

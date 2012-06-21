@@ -36,32 +36,20 @@ cc_warnings;
 test_requires 'Data::MessagePack';
 
 my ($amd64) = qx{ $^X -V } =~ /(amd64|x86_64)/i;
+my $opt = '--disable-shared';
+$opt .= ' --with-pic' if $amd64;
 
 makemaker_args->{MYEXTLIB} = 'msgpack-0.5.7/src/.libs/libmsgpack$(LIB_EXT)';
 
-if ($amd64) {
 {
     package MY;
     sub postamble {
-        <<'__EOF__';
-$(MYEXTLIB):
-	cd msgpack-0.5.7 && ./configure --with-pic --disable-shared && $(MAKE)
+        <<"__EOF__";
+\$(MYEXTLIB):
+	cd msgpack-0.5.7 && ./configure $opt && \$(MAKE)
 
 __EOF__
     }
-}
-}
-else {
-{
-    package MY;
-    sub postamble {
-        <<'__EOF__';
-$(MYEXTLIB):
-	cd msgpack-0.5.7 && ./configure --disable-shared && $(MAKE)
-
-__EOF__
-    }
-}
 }
 
 readme_from 'lib/Data/MessagePack/Stream.pm';

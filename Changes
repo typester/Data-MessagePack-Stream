@@ -1,5 +1,9 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+0.05 2012-06-21T16:29:36+09:00
+     - fix build issue on x86_64 again
+     - fix some HV/AV leaks (Reported by gleeco)
+
 0.04 2012-06-18T10:34:33+09:00
      - enable -fPIC on x86_64 environment
 

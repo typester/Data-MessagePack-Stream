@@ -27,36 +27,36 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
 
     switch (obj->type) {
         case MSGPACK_OBJECT_NIL:
-            res = sv_2mortal(newSV(0));
+            res = newSV(0);
             break;
         case MSGPACK_OBJECT_BOOLEAN:
-            res = sv_2mortal(newSViv(obj->via.boolean));
+            res = newSViv(obj->via.boolean);
             break;
         case MSGPACK_OBJECT_POSITIVE_INTEGER:
-            res = sv_2mortal(newSVuv(obj->via.u64));
+            res = newSVuv(obj->via.u64);
             break;
         case MSGPACK_OBJECT_NEGATIVE_INTEGER:
-            res = sv_2mortal(newSViv(obj->via.i64));
+            res = newSViv(obj->via.i64);
             break;
         case MSGPACK_OBJECT_DOUBLE:
-            res = sv_2mortal(newSVnv(obj->via.dec));
+            res = newSVnv(obj->via.dec);
             break;
         case MSGPACK_OBJECT_RAW:
-            res = sv_2mortal(newSVpv(obj->via.raw.ptr, obj->via.raw.size));
+            res = newSVpv(obj->via.raw.ptr, obj->via.raw.size);
             break;
         case MSGPACK_OBJECT_ARRAY: {
-            av = newAV();
+            av = (AV*)sv_2mortal((SV*)newAV());
             o = obj->via.array.ptr;
 
             for (i = 0; i < obj->via.array.size; i++) {
                 av_push(av, decode_msgpack_object(o + i));
             }
 
-            res = sv_2mortal(newRV_inc((SV*)av));
+            res = newRV_inc((SV*)av);
             break;
         }
         case MSGPACK_OBJECT_MAP: {
-            hv = newHV();
+            hv = (HV*)sv_2mortal((SV*)newHV());
             kv = obj->via.map.ptr;
 
             for (i = 0; i < obj->via.map.size; i++) {
@@ -65,7 +65,7 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
                 hv_store(hv, key, (kv + i)->key.via.raw.size, decode_msgpack_object(o), 0);
             }
 
-            res = sv_2mortal(newRV_inc((SV*)hv));
+            res = newRV_inc((SV*)hv);
             break;
         }
         default:
@@ -147,7 +147,7 @@ CODE:
 {
     SV* sv_res;
 
-    sv_res = decode_msgpack_object(&up->result.data);
+    sv_res = sv_2mortal(decode_msgpack_object(&up->result.data));
 
     ST(0) = sv_res;
     XSRETURN(1);

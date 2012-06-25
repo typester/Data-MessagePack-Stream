@@ -96,8 +96,7 @@ CODE:
 
     sv_bless(sv_msgpack, gv_stashpv(klass, 1));
 
-    up = (my_unpacker_t*)malloc(sizeof(my_unpacker_t));
-    assert(up);
+    Newx(up, 1, my_unpacker_t);
 
     up->unpacker = msgpack_unpacker_new(MSGPACK_UNPACKER_INIT_BUFFER_SIZE);
     msgpack_unpacked_init(&up->result);
@@ -115,7 +114,7 @@ CODE:
 {
     msgpack_unpacker_free(up->unpacker);
     msgpack_unpacked_destroy(&up->result);
-    free(up);
+    Safefree(up);
 }
 
 void

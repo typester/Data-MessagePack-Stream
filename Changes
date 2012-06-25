@@ -1,5 +1,8 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+0.06 2012-06-25T13:22:46+09:00
+     - fix memory allocation checks
+
 0.05 2012-06-21T16:29:36+09:00
      - fix build issue on x86_64 again
      - fix some HV/AV leaks (Reported by gleeco)

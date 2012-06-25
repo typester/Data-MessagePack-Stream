@@ -99,6 +99,9 @@ CODE:
     Newx(up, 1, my_unpacker_t);
 
     up->unpacker = msgpack_unpacker_new(MSGPACK_UNPACKER_INIT_BUFFER_SIZE);
+    if (NULL == up->unpacker) {
+        croak("cannot allocate msgpack unpacker");
+    }
     msgpack_unpacked_init(&up->result);
 
     sv_magic((SV*)hv, NULL, PERL_MAGIC_ext, NULL, 0);

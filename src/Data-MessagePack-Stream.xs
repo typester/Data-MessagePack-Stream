@@ -42,7 +42,7 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
             res = newSVnv(obj->via.dec);
             break;
         case MSGPACK_OBJECT_RAW:
-            res = newSVpv(obj->via.raw.ptr, obj->via.raw.size);
+            res = newSVpvn(obj->via.raw.ptr, obj->via.raw.size);
             break;
         case MSGPACK_OBJECT_ARRAY: {
             av = (AV*)sv_2mortal((SV*)newAV());

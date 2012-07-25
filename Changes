@@ -1,5 +1,9 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+0.07 2012-07-25T10:15:01+09:00
+     - fix a bug #3 failing to decode empty string (Reported by maxatome)
+     - add a regression test case fails with Data::MessagePack (by Olivier Mengué)
+
 0.06 2012-06-25T13:22:46+09:00
      - fix memory allocation checks
 

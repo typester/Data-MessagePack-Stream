@@ -123,3 +123,5 @@ README
 src/Data-MessagePack-Stream.xs
 src/typemap
 t/basic.t
+t/bug-issue3.t
+t/RT74518.t

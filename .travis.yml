@@ -3,5 +3,6 @@ sudo: false
 language: "perl"
 before_install:
     - git submodule update --init --recursive
-    - perl Makefile.PL | cpanm --notest
+    - yes | cpanm --notest --verbose Module::Install Module::Install::AuthorTests Module::Install::ReadmeFromPod Module::Install::Repository Module::Install::XSUtil XSLoader
+
 

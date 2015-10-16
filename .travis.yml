@@ -3,4 +3,5 @@ sudo: false
 language: "perl"
 before_install:
     - git submodule update --init --recursive
-    - perl Makefile.PL | cpanm
+    - perl Makefile.PL | cpanm --notest
+

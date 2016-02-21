@@ -44,6 +44,9 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
         case MSGPACK_OBJECT_BIN:
             res = newSVpvn(obj->via.bin.ptr, obj->via.bin.size);
             break;
+        case MSGPACK_OBJECT_STR:
+            res = newSVpvn_utf8(obj->via.str.ptr, obj->via.str.size, 1);
+            break;
         case MSGPACK_OBJECT_ARRAY: {
             av = (AV*)sv_2mortal((SV*)newAV());
             o = obj->via.array.ptr;

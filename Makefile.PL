@@ -30,7 +30,7 @@ all_from 'lib/Data/MessagePack/Stream.pm';
 
 use_ppport 3.19;
 cc_src_paths 'src';
-cc_include_paths 'msgpack-0.5.7/src';
+cc_include_paths 'msgpack-1.4.2/include';
 cc_warnings;
 
 test_requires 'Data::MessagePack';
@@ -39,14 +39,14 @@ my ($amd64) = qx{ $^X -V } =~ /(amd64|x86_64)/i;
 my $opt = '--disable-shared';
 $opt .= ' --with-pic' if $amd64;
 
-makemaker_args->{MYEXTLIB} = 'msgpack-0.5.7/src/.libs/libmsgpack$(LIB_EXT)';
+makemaker_args->{MYEXTLIB} = 'msgpack-1.4.2/src/.libs/libmsgpackc$(LIB_EXT)';
 
 {
     package MY;
     sub postamble {
         <<"__EOF__";
 \$(MYEXTLIB):
-	cd msgpack-0.5.7 && ./configure $opt && \$(MAKE)
+	cd msgpack-1.4.2 && ./configure $opt && \$(MAKE)
 
 __EOF__
     }

@@ -4,6 +4,7 @@ use Test::More;
 
 use Data::MessagePack;
 use Data::MessagePack::Stream;
+use Encode ();
 
 my $mp = Data::MessagePack->new;
 
@@ -56,6 +57,18 @@ my $mp = Data::MessagePack->new;
     }
 
     is $count, 100, 'decoded count ok';
+}
+
+{
+    # New specification: Str type
+    my $utf8_mp = Data::MessagePack->new->utf8;
+
+    my $stream = Data::MessagePack::Stream->new;
+
+    $stream->feed( $utf8_mp->encode(Encode::decode_utf8("あいうえお")));
+    ok $stream->next, 'next ok';
+    is $stream->data, Encode::decode_utf8("あいうえお");
+    ok !$stream->next, 'no more data ok';
 }
 
 done_testing;

@@ -20,7 +20,7 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
     SV* res = NULL;
     AV* av;
     HV* hv;
-    int i;
+    size_t i;
     msgpack_object* o;
     msgpack_object_kv* kv;
     const char* key;

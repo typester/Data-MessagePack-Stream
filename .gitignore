@@ -3,3 +3,9 @@ README
 blib/
 inc/
 test.pl
+MYMETA.*
+META.yml
+pm_to_blib
+ppport.h
+Stream.bs
+src/Data-MessagePack-Stream.[co]

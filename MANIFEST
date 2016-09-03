@@ -535,7 +535,6 @@ msgpack-1.4.2/include/msgpack/zone.hpp
 msgpack-1.4.2/INSTALL
 msgpack-1.4.2/libtool
 msgpack-1.4.2/LICENSE_1_0.txt
-msgpack-1.4.2/Makefile
 msgpack-1.4.2/Makefile.am
 msgpack-1.4.2/Makefile.in
 msgpack-1.4.2/msgpack.pc
@@ -544,7 +543,6 @@ msgpack-1.4.2/msgpack_vc8.sln
 msgpack-1.4.2/msgpack_vc8.vcproj
 msgpack-1.4.2/NEWS
 msgpack-1.4.2/NOTICE
-msgpack-1.4.2/README
 msgpack-1.4.2/README.md
 msgpack-1.4.2/src/.deps/objectc.Plo
 msgpack-1.4.2/src/.deps/unpack.Plo
@@ -555,7 +553,6 @@ msgpack-1.4.2/src/.libs/libmsgpackc.a
 msgpack-1.4.2/src/.libs/libmsgpackc.la
 msgpack-1.4.2/src/.libs/libmsgpackc.lai
 msgpack-1.4.2/src/libmsgpackc.la
-msgpack-1.4.2/src/Makefile
 msgpack-1.4.2/src/Makefile.am
 msgpack-1.4.2/src/Makefile.in
 msgpack-1.4.2/src/objectc.c
@@ -627,7 +624,6 @@ msgpack-1.4.2/test/fixint_c.cpp
 msgpack-1.4.2/test/iterator_cpp11.cpp
 msgpack-1.4.2/test/json.cpp
 msgpack-1.4.2/test/limit.cpp
-msgpack-1.4.2/test/Makefile
 msgpack-1.4.2/test/Makefile.am
 msgpack-1.4.2/test/Makefile.in
 msgpack-1.4.2/test/msgpack_basic.cpp

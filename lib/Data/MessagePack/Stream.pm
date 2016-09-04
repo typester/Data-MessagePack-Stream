@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use XSLoader;
 
-our $VERSION = '0.07';
+our $VERSION = '1.00';
 
 XSLoader::load __PACKAGE__, $VERSION;
 
@@ -22,10 +22,10 @@ Data::MessagePack::Stream - yet another messagepack streaming deserializer
 
     use Data::Dumper;
     my $unpacker = Data::MessagePack::Stream->new;
-    
+
     while (read($fh, my $buf, 1024)) {
         $unpacker->feed($buf);
-    
+
         while ($unpacker->next) {
             print Dumper($unpacker->data);
         }

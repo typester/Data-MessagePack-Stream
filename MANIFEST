@@ -651,9 +651,6 @@ msgpack-1.4.2/test/unique_ptr_cpp11.cpp
 msgpack-1.4.2/test/user_class.cpp
 msgpack-1.4.2/test/version.cpp
 msgpack-1.4.2/test/zone.cpp
-MYMETA.json
-MYMETA.yml
-ppport.h
 README
 src/Data-MessagePack-Stream.xs
 src/typemap

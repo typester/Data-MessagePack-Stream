@@ -17,3 +17,5 @@
 ^\.gitmodules$
 ^\.travis.yml$
 ^README\.md$
+^MYMETA.*$
+^ppport.h$

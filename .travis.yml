@@ -1,10 +1,14 @@
-sudo: false
+sudo: required
+dist: trusty
 language: perl
 perl:
-  - "5.14"
   - "5.16"
-  - "5.18"
   - "5.20"
   - "5.22"
 before_install:
+    - sudo apt-get install cmake
+    - curl -L http://ftp.gnu.org/gnu/automake/automake-1.15.tar.gz | tar xzf -
+    - (cd automake-1.15 && ./configure && make && sudo make install)
+    - curl -L http://ftpmirror.gnu.org/libtool/libtool-2.4.6.tar.gz | tar xzf -
+    - (cd libtool-2.4.6 && ./configure && make && sudo make install)
     - perl Makefile.PL | grep 'Module::' | cpanm

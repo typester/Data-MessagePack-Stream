@@ -19,3 +19,15 @@
 ^README\.md$
 ^MYMETA.*$
 ^ppport.h$
+^src/Data-MessagePack-Stream\.[co]$
+^Stream\.bs$
+
+^msgpack-[^/]+/Makefile$
+^msgpack-[^/]+/autom4te.cache/
+^msgpack-[^/]+/src/Makefile$
+^msgpack-[^/]+/src/.*\.l?[ao]$
+^msgpack-[^/]+/src/\.deps/
+^msgpack-[^/]+/src/\.libs/
+^msgpack-[^/]+/test/Makefile$
+^msgpack-[^/]+/test/Makefile$
+^msgpack-[^/]+/test/\.deps/

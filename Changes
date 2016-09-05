@@ -1,5 +1,8 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+1.01 2016-09-06T0:00:00+09:00
+     - Fix packaging issue which causes build error on other than Linux
+
 1.00 2016-09-04T16:00:00+09:00
      [Incompatible Changes]
      - Support new MessagePack specification

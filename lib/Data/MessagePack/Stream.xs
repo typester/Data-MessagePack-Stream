@@ -2,6 +2,7 @@
 #include "perl.h"
 #include "XSUB.h"
 #define NEED_sv_2pvbyte
+#define NEED_newSVpvn_flags
 #include "ppport.h"
 
 #include <assert.h>

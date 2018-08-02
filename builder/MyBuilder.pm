@@ -32,6 +32,7 @@ sub _set_mtime {
 sub _build_msgpack {
     my $self = shift;
 
+    # We should restore original mtime in msgpack-1.4.2.tar.gz; otherwise end-users might be asked for having automake tools.
     $self->_set_mtime;
 
     my @opt = ('--disable-shared');

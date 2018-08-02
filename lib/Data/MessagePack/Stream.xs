@@ -40,12 +40,15 @@ load_bool(pTHX_ const char* const name) {
 
 static SV* decode_msgpack_object(msgpack_object* obj) {
     SV* res = NULL;
+    SV* key_sv;
     AV* av;
     HV* hv;
     size_t i;
     msgpack_object* o;
     msgpack_object_kv* kv;
     const char* key;
+    STRLEN len;
+
     switch (obj->type) {
         case MSGPACK_OBJECT_NIL:
             res = newSV(0);
@@ -89,9 +92,12 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
             kv = obj->via.map.ptr;
 
             for (i = 0; i < obj->via.map.size; i++) {
-                key = (kv + i)->key.via.bin.ptr;
+                key_sv = decode_msgpack_object(&((kv + i)->key));
+                key = SvPV(key_sv, len);
+
                 o   = &((kv + i)->val);
-                hv_store(hv, key, (kv + i)->key.via.bin.size, decode_msgpack_object(o), 0);
+                hv_store(hv, key, len, decode_msgpack_object(o), 0);
+                SvREFCNT_dec(key_sv);
             }
 
             res = newRV_inc((SV*)hv);

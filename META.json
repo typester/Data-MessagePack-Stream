@@ -66,10 +66,13 @@
          "web" : "https://github.com/typester/Data-MessagePack-Stream"
       }
    },
-   "version" : "1.02",
+   "version" : "1.03",
    "x_authority" : "cpan:TYPESTER",
    "x_contributors" : [
+      "Daisuke Murase <typester@gmail.com>",
+      "Kang-min Liu <gugod@gugod.org>",
       "Olivier Mengué <dolmen@cpan.org>",
+      "Sergey Zhuravlev <zhur@yandex-team.ru>",
       "Shoichi Kaji <skaji@cpan.org>",
       "Syohei YOSHIDA <syohex@gmail.com>"
    ],

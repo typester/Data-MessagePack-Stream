@@ -1,4 +1,5 @@
 requires 'perl', '5.008001';
+requires 'Data::MessagePack';
 
 on configure => sub {
     requires 'Devel::PPPort', '3.42';
@@ -7,5 +8,4 @@ on configure => sub {
 
 on test => sub {
     requires 'Test::More', '0.98';
-    requires 'Data::MessagePack';
 };

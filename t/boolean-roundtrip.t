@@ -1,15 +1,12 @@
 use strict;
 use warnings;
 use Test::More;
-use Data::MessagePack;
 use Data::MessagePack::Stream;
-
-my $mp = Data::MessagePack->new;
 
 my $stream = Data::MessagePack::Stream->new;
 
-$stream->feed( $mp->encode( Data::MessagePack::true() ) );
-$stream->feed( $mp->encode( Data::MessagePack::false() ) );
+$stream->feed("\xc3"); # the serialization of boolean "true"
+$stream->feed("\xc2"); # the serialization of boolean "false"
 
 ok $stream->next, 'next ok';
 my $t = $stream->data;

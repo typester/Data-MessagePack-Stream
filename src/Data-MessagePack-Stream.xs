@@ -41,7 +41,7 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
     SV* res = NULL;
     AV* av;
     HV* hv;
-    int i;
+    size_t i;
     msgpack_object* o;
     msgpack_object_kv* kv;
     const char* key;
@@ -63,11 +63,14 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
         case MSGPACK_OBJECT_NEGATIVE_INTEGER:
             res = newSViv(obj->via.i64);
             break;
-        case MSGPACK_OBJECT_DOUBLE:
-            res = newSVnv(obj->via.dec);
+        case MSGPACK_OBJECT_FLOAT:
+            res = newSVnv(obj->via.f64);
             break;
-        case MSGPACK_OBJECT_RAW:
-            res = newSVpvn(obj->via.raw.ptr, obj->via.raw.size);
+        case MSGPACK_OBJECT_BIN:
+            res = newSVpvn(obj->via.bin.ptr, obj->via.bin.size);
+            break;
+        case MSGPACK_OBJECT_STR:
+            res = newSVpvn_utf8(obj->via.str.ptr, obj->via.str.size, 1);
             break;
         case MSGPACK_OBJECT_ARRAY: {
             av = (AV*)sv_2mortal((SV*)newAV());
@@ -85,9 +88,9 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
             kv = obj->via.map.ptr;
 
             for (i = 0; i < obj->via.map.size; i++) {
-                key = (kv + i)->key.via.raw.ptr;
+                key = (kv + i)->key.via.bin.ptr;
                 o   = &((kv + i)->val);
-                hv_store(hv, key, (kv + i)->key.via.raw.size, decode_msgpack_object(o), 0);
+                hv_store(hv, key, (kv + i)->key.via.bin.size, decode_msgpack_object(o), 0);
             }
 
             res = newRV_inc((SV*)hv);

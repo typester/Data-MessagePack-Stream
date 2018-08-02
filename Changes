@@ -1,5 +1,12 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+1.01 2016-09-06T0:00:00+09:00
+     - Fix packaging issue which causes build error on other than Linux
+
+1.00 2016-09-04T16:00:00+09:00
+     [Incompatible Changes]
+     - Support new MessagePack specification
+
 0.07 2012-07-25T10:15:01+09:00
      - fix a bug #3 failing to decode empty string (Reported by maxatome)
      - add a regression test case fails with Data::MessagePack (by Olivier Mengué)

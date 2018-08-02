@@ -17,6 +17,27 @@ struct my_unpacker_s {
     msgpack_unpacked result;
 };
 
+static SV*
+load_bool(pTHX_ const char* const name) {
+    CV* const cv = get_cv(name, GV_ADD);
+    dSP;
+    ENTER;
+    SAVETMPS;
+    PUSHMARK(SP);
+    call_sv((SV*)cv, G_SCALAR);
+    SPAGAIN;
+    SV* const sv = newSVsv(POPs);
+    PUTBACK;
+    FREETMPS;
+    LEAVE;
+    assert(sv);
+    assert(sv_isobject(sv));
+    if(!SvOK(sv)) {
+        Perl_croak(aTHX_ "Oops: Failed to load %"SVf, name);
+    }
+    return sv;
+}
+
 static SV* decode_msgpack_object(msgpack_object* obj) {
     SV* res = NULL;
     AV* av;
@@ -25,14 +46,18 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
     msgpack_object* o;
     msgpack_object_kv* kv;
     const char* key;
-
     switch (obj->type) {
         case MSGPACK_OBJECT_NIL:
             res = newSV(0);
             break;
-        case MSGPACK_OBJECT_BOOLEAN:
-            res = newSViv(obj->via.boolean);
-            break;
+        case MSGPACK_OBJECT_BOOLEAN: {
+          if (obj->via.boolean == 1) {
+            res = newSVsv( load_bool(aTHX_ "Data::MessagePack::true") );
+          } else {
+            res = newSVsv( load_bool(aTHX_ "Data::MessagePack::false") );
+          }
+                break;
+        }
         case MSGPACK_OBJECT_POSITIVE_INTEGER:
             res = newSVuv(obj->via.u64);
             break;

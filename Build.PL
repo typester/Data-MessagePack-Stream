@@ -23,6 +23,7 @@ my %args = (
     },
 
     requires => {
+        'Data::MessagePack' => '0',
         'perl' => '5.008001',
     },
 
@@ -36,7 +37,6 @@ my %args = (
     },
 
     test_requires => {
-        'Data::MessagePack' => '0',
         'Test::More' => '0.98',
     },
 

@@ -1,5 +1,8 @@
 Revision history for Perl extension Data::MessagePack::Stream
 
+1.04 2018-08-03T09:47:00+09:00
+     - Add missing dependency bringed on previous release (by Shoichi Kaji #14)
+
 1.03 2018-08-03T04:51:00+09:00
      - Roundtrip boolean values (by gugod #5)
      - Fix crashes parsing maps that have integer keys (by zhurs #4)

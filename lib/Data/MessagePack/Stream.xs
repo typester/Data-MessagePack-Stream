@@ -103,6 +103,14 @@ static SV* decode_msgpack_object(msgpack_object* obj) {
             res = newRV_inc((SV*)hv);
             break;
         }
+        case MSGPACK_OBJECT_EXT: {
+            hv = newHV();
+            res = sv_bless(newRV_noinc((SV*)hv), gv_stashpv("Data::MessagePack::Ext", 1));
+
+            hv_stores(hv, "type", newSViv(obj->via.ext.type));
+            hv_stores(hv, "data", newSVpvn(obj->via.ext.ptr, obj->via.ext.size));
+            break;
+        }
         default:
             Perl_croak(aTHX_ "Unsupported msgpack type: %d", obj->type);
             break;

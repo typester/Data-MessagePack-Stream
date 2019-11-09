@@ -20,6 +20,8 @@ my $mp = Data::MessagePack->new;
     $stream->feed( $mp->encode([qw/a b c/]) );
     $stream->feed( $mp->encode({ foo => 'bar' }) );
     $stream->feed( "\x81\x01\xa3bar" ); # {1 => 'bar'}
+    $stream->feed( "\xd4\x55\x61" ); # ext => 'a'
+    $stream->feed( "\xc7\x00\x55" ); # ext => ''
 
     ok !$stream->data, 'no data unless calling next';
 
@@ -39,6 +41,16 @@ my $mp = Data::MessagePack->new;
     is_deeply $stream->data, { foo => 'bar' };
     ok $stream->next, 'next ok';
     is_deeply $stream->data, { 1 => 'bar' };
+    ok $stream->next, 'next ok';
+    my $ext = $stream->data;
+    isa_ok $ext, 'Data::MessagePack::Ext';
+    is $ext->{type}, 85;
+    is $ext->{data}, 'a';
+    ok $stream->next, 'next ok';
+    $ext = $stream->data;
+    isa_ok $ext, 'Data::MessagePack::Ext';
+    is $ext->{type}, 85;
+    is $ext->{data}, '';
 
     ok !$stream->next, 'no more data ok';
 }

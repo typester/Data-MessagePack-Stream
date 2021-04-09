@@ -32,16 +32,11 @@ MYMETA.*
 
 /Data-MessagePack-Stream-*
 
-msgpack-*/config.h
-msgpack-*/config.log
-msgpack-*/config.status
-msgpack-*/libtool
+msgpack-*/CMakeCache.txt
+msgpack-*/CMakeFiles/
+msgpack-*/cmake_install.cmake
+msgpack-*/libmsgpackc.a
+msgpack-*/msgpack-config-version.cmake
+msgpack-*/msgpack-config.cmake
+msgpack-*/msgpack-targets.cmake
 msgpack-*/msgpack.pc
-msgpack-*/src/.deps/
-msgpack-*/src/.libs/
-msgpack-*/src/*.la
-msgpack-*/src/*.lo
-msgpack-*/src/*.o
-msgpack-*/stamp-h1
-msgpack-*/test/.deps/
-msgpack-*/autom4te.cache/

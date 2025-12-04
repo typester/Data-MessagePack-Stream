@@ -67,7 +67,7 @@
          "web" : "https://github.com/typester/Data-MessagePack-Stream"
       }
    },
-   "version" : "1.05",
+   "version" : "1.06",
    "x_authority" : "cpan:TYPESTER",
    "x_contributors" : [
       "Daisuke Murase <typester@gmail.com>",

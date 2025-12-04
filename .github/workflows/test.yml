@@ -1,0 +1,25 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        perl: [ '5.42', '5.40' ]
+    name: Perl ${{ matrix.perl }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: ${{ matrix.perl }}
+      - name: Install build tools
+        run: sudo apt install cmake
+      - name: Install dependencies
+        run: cpanm --installdeps --with-configure .
+      - name: Build
+        run: |
+          perl Build.PL
+          ./Build
+      - name: Run test
+        run: ./Build test

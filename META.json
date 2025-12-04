@@ -4,7 +4,7 @@
       "Daisuke Murase <typester@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.1.10, CPAN::Meta::Converter version 2.150010",
+   "generated_by" : "Minilla/v3.1.28, CPAN::Meta::Converter version 2.150010",
    "license" : [
       "perl_5"
    ],
@@ -63,7 +63,7 @@
       "homepage" : "https://github.com/typester/Data-MessagePack-Stream",
       "repository" : {
          "type" : "git",
-         "url" : "git://github.com/typester/Data-MessagePack-Stream.git",
+         "url" : "https://github.com/typester/Data-MessagePack-Stream.git",
          "web" : "https://github.com/typester/Data-MessagePack-Stream"
       }
    },
@@ -77,6 +77,6 @@
       "Shohei YOSHIDA <syohex@gmail.com>",
       "Shoichi Kaji <skaji@cpan.org>"
    ],
-   "x_serialization_backend" : "JSON::PP version 4.05",
+   "x_serialization_backend" : "JSON::PP version 4.16",
    "x_static_install" : 0
 }
